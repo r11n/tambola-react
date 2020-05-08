@@ -57,7 +57,7 @@ const genericStyles = `
       height: 30px;
       width: 180px;
       top: -30px;
-      z-index: -1;
+      z-index: 0;
     }
     .rotator {
       transform: rotate(90deg);

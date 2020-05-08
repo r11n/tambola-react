@@ -25,3 +25,44 @@ export function isMobile() {
 export function isPortrait() {
   return window.innerHeight > window.innerWidth;
 }
+
+export function maximize() {
+  document.querySelector('#root').requestFullscreen();
+}
+
+export function minimize() {
+  if (!!document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+}
+
+export function fullScreenEvents(enteredCallback, leavedCallback) {
+  const exec = () => {
+    const fullable = document.fullscreenEnabled && !!document.fullscreenElement;
+    if (fullable && typeof enteredCallback === 'function') {
+      enteredCallback();
+      return;
+    }
+    if (!fullable && typeof leavedCallback === 'function') {
+      leavedCallback();
+      return;
+    }
+  }
+  document.addEventListener("fullscreenchange", function () {
+    exec();
+  });
+  /* Firefox */
+  document.addEventListener("mozfullscreenchange", function () {
+    exec();
+  });
+
+  /* Chrome, Safari and Opera */
+  document.addEventListener("webkitfullscreenchange", function () {
+    exec();
+  });
+
+  /* IE / Edge */
+  document.addEventListener("msfullscreenchange", function () {
+    exec();
+  }); 
+}

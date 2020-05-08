@@ -73,8 +73,16 @@ main {
   width: 100%;
 }
 
-.nav-item:last-child {
+// .nav-item:last-child {
+//   margin-top: auto;
+// }
+
+.nav-item:nth-last-child(2) {
   margin-top: auto;
+}
+
+#root {
+  background-color: var(--bg-primary);
 }
 
 .nav-link {
