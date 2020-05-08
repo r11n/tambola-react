@@ -72,12 +72,14 @@ export const Layout = {
                       </li>
                     ))}
                     <li className="nav-item" id="#maximize" title="Toggle Fullscren">
+                      {/* eslint-disable-next-line */}
                       <a href="#" className="nav-link" onClick={toggleFullScreen}>
                         {icon(full ? 'Minimize2' : 'Maximize2')}
                         <span className="link-text">Toggle Fullscren</span>
                       </a>
                     </li>
                     <li className="nav-item" id="#themeButton" title="Toggle Theme">
+                      {/* eslint-disable-next-line */}
                       <a href="#" className="nav-link" onClick={toggle}>
                         {icon(themeIcon[theme], theme === 'dark' ? '#FF8F00' : '#0277BD')}
                         <span className="link-text">{theme}</span>
