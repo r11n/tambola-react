@@ -1,65 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './App.scss';
 import {BrowserRouter as Router, Switch, Link, Route} from 'react-router-dom';
 import {Layout} from './shared/layout';
 import NewGame from './game/new';
 import PlayGame from './game/play';
 import ShowGame from './game/show';
+import { Ticket } from './shared/ticket';
+import Landscape from './shared/landscape';
+import { isMobile, isPortrait } from './shared/utils';
 const {Header, Main, Footer} = Layout;
 function App() {
+  const [mobile, setMobile] = useState(isMobile() && isPortrait());
+  useEffect(() => {
+    setTimeout(() => {setMobile(false)},1500);
+  });
+  const headerLinks = [
+    {
+      name: 'New Game',
+      link: '/new',
+      icon: 'PlusCircle',
+      title: 'Start New Game'
+    }
+  ]
   return (
     <Router>
-      <Header />
+      <Header navItems={headerLinks}/>
       <Main>
-        <h1>Test</h1>
-        <ul>
-          <li><Link to="new">New game</Link></li>
-          <li><Link to="play">Play game</Link></li>
-          <li><Link to="Show">Show game</Link></li>
-        </ul>
-        <Switch>
-          <Route path="/new"><NewGame /></Route>
-          <Route path="/play"><PlayGame /></Route>
-          <Route path="/show"><ShowGame /></Route>
-        </Switch>
-        <div style={{width: '450px', height: '150px', maxWidth: '100%'}}>
-          <div style={{height: '50px', width: '100%', display: 'flex'}}>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-          </div>
-          <div style={{ height: '50px', width: '100%', display: 'flex' }}>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-          </div>
-          <div style={{ height: '50px', width: '100%', display: 'flex' }}>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-            <div style={{ width: 50, height: 50, border: '1px solid black' , maxWidth: '11%'}}></div>
-          </div>
+        {mobile && <Landscape />}
+        <div className="container">
+          <Switch>
+            <Route path="/new"><NewGame /></Route>
+            <Route path="/play"><PlayGame /></Route>
+            <Route path="/show"><ShowGame /></Route>
+          </Switch>
+          <Ticket />
         </div>
       </Main>
-      <Footer />
     </Router>
   );
 }
