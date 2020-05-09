@@ -5,7 +5,7 @@ import {Layout} from './shared/layout';
 import NewGame from './game/new';
 import PlayGame from './game/play';
 import ShowGame from './game/show';
-import { Ticket } from './shared/ticket';
+import { Ticket } from './game/ticket';
 import Landscape from './shared/landscape';
 import { isMobile, isPortrait } from './shared/utils';
 const {Header, Main} = Layout;
